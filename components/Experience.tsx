@@ -53,7 +53,7 @@ const Experience = () => {
                         </div>
                       </div>
                       <p className="text-muted-foreground leading-relaxed">
-                        Currently pursuing a Bachelor's degree in Computer Science with a focus on 
+                        Sophomore pursuing a Bachelor's degree in Computer Science with a focus on 
                         AI/ML, software engineering, and assistive technologies. Maintaining a 4.0 GPA 
                         while actively working on projects that combine technical excellence with 
                         real-world impact.

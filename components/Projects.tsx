@@ -16,7 +16,7 @@ const Projects = () => {
     {
       title: 'VisionAssist Smart Glasses',
       description: 'Wearable assistive device using Raspberry Pi and Python with ultrasonic sensors and haptic feedback. Achieved 95% obstacle detection accuracy with sub-200ms response time for real-time navigation assistance.',
-      image: '/api/placeholder/600/400',
+      image: '/images/vision-assist-glasses.png',
       technologies: ['Python', 'Raspberry Pi', 'Ultrasonic Sensors', 'Hardware'],
       github: 'https://github.com/vikthevar/VisionAssist',
       live: null,
@@ -25,8 +25,8 @@ const Projects = () => {
     {
       title: 'ReThread Chrome Extension',
       description: '2nd place winner at DevLabs hackathon. Chrome extension using Google Gemini Vision for reverse image search, redirecting users from fast fashion to secondhand marketplaces with 85% matching accuracy.',
-      image: '/api/placeholder/600/400',
-      technologies: ['JavaScript', 'Chrome APIs', 'Google Gemini Vision', 'Computer Vision'],
+      image: '/images/rethread-logo.png',
+      technologies: ['JavaScript', 'Chrome APIs', 'Google Gemini Vision'],
       github: 'https://github.com/vikthevar/ReThread',
       live: null,
       period: 'Mar 2025'
@@ -34,7 +34,7 @@ const Projects = () => {
     {
       title: 'Heimdall AI Voice Assistant',
       description: 'AI-powered voice assistant for visually impaired users to navigate computer screens using natural voice commands. Features OCR, computer vision, and secure AWS cloud integration.',
-      image: '/api/placeholder/600/400',
+      image: '/images/heimdall-logo.jpg',
       technologies: ['Python', 'Google Gemini', 'AWS', 'OCR', 'YOLOv8', 'Whisper'],
       github: null,
       live: null,
@@ -76,8 +76,16 @@ const Projects = () => {
                 <AnimatedBorderTrail>
                   <Card className="glass-effect border-none overflow-hidden hover:bg-white/5 transition-all duration-300">
                     <div className="relative overflow-hidden">
-                      <div className="w-full h-48 bg-gradient-to-br from-white/10 to-white/5 flex items-center justify-center">
-                        <span className="text-muted-foreground">Project Image</span>
+                      <div className="w-full h-48 bg-black flex items-center justify-center">
+                        {project.image.startsWith('/images/') ? (
+                          <img 
+                            src={project.image} 
+                            alt={project.title}
+                            className="w-full h-full object-contain p-4"
+                          />
+                        ) : (
+                          <span className="text-muted-foreground">Project Image</span>
+                        )}
                       </div>
                       <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
                         {project.github ? (
