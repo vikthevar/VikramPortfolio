@@ -14,15 +14,10 @@ export default function SplitText({
   const timer = useRef<NodeJS.Timeout>();
 
   return (
-    <div
-      className={cn(
-        "relative text-4xl font-bold text-white md:text-5xl lg:text-6xl uppercase",
-        className,
-      )}
-    >
+    <div className={cn("relative uppercase select-none", className)}>
       <div className="flex justify-center">
         {text.split("").map((letter, index) => (
-          <div
+          <span
             onMouseEnter={() => {
               if (timer.current) {
                 clearTimeout(timer.current);
@@ -35,59 +30,22 @@ export default function SplitText({
               }, 150);
             }}
             key={index}
-            className="relative cursor-pointer"
+            className={cn(
+              "relative cursor-pointer inline-block transition-transform duration-300 ease-out",
+              {
+                "animate-pulse": index === activeIndex,
+                "-translate-y-2 scale-110": index === activeIndex,
+                "-translate-y-1 scale-105":
+                  activeIndex !== undefined &&
+                  (index === activeIndex - 1 || index === activeIndex + 1),
+              }
+            )}
             style={{ 
-              width: letter === ' ' ? '0.5ch' : 'auto',
-              minWidth: letter === ' ' ? '0.5ch' : '0.6ch',
-              height: '1.2em',
-              overflow: 'hidden'
+              marginRight: letter === ' ' ? '0.5em' : '0.05em',
             }}
           >
-            {/* Top half */}
-            <div
-              className={cn(
-                "absolute top-0 left-0 w-full transition-transform duration-300 ease-out",
-                {
-                  "-translate-y-6": index === activeIndex,
-                  "-translate-y-3":
-                    activeIndex !== undefined &&
-                    (index === activeIndex - 1 || index === activeIndex + 1),
-                  "-translate-y-1":
-                    activeIndex !== undefined &&
-                    (index === activeIndex - 2 || index === activeIndex + 2),
-                }
-              )}
-              style={{ 
-                height: '50%',
-                overflow: 'hidden'
-              }}
-            >
-              {letter}
-            </div>
-            {/* Bottom half */}
-            <div
-              className={cn(
-                "absolute bottom-0 left-0 w-full transition-transform duration-300 ease-out",
-                {
-                  "translate-y-6": index === activeIndex,
-                  "translate-y-3":
-                    activeIndex !== undefined &&
-                    (index === activeIndex - 1 || index === activeIndex + 1),
-                  "translate-y-1":
-                    activeIndex !== undefined &&
-                    (index === activeIndex - 2 || index === activeIndex + 2),
-                }
-              )}
-              style={{ 
-                height: '50%',
-                overflow: 'hidden',
-                display: 'flex',
-                alignItems: 'flex-end'
-              }}
-            >
-              <span style={{ transform: 'translateY(-50%)' }}>{letter}</span>
-            </div>
-          </div>
+            {letter === ' ' ? '\u00A0' : letter}
+          </span>
         ))}
       </div>
     </div>
