@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { useRef, useState } from "react";
 import { cn } from "@/lib/utils";
@@ -40,11 +40,11 @@ export default function SplitText({
                   (index === activeIndex - 1 || index === activeIndex + 1),
               }
             )}
-            style={{ 
-              marginRight: letter === ' ' ? '0.5em' : '0.05em',
+            style={{
+              marginRight: letter === " " ? "0.5em" : "0.05em",
             }}
           >
-            {letter === ' ' ? '\u00A0' : letter}
+            {letter === " " ? "\u00A0" : letter}
           </span>
         ))}
       </div>

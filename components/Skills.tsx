@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import { useInView } from 'framer-motion'
 import { useRef } from 'react'
 import { Card, CardContent } from '@/components/ui/card'
+import AnimatedBorderTrail from '@/components/animata/container/animated-border-trail'
 
 const Skills = () => {
   const ref = useRef(null)
@@ -75,51 +76,54 @@ const Skills = () => {
                 initial={{ opacity: 0, y: 50 }}
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
                 transition={{ duration: 0.8, delay: categoryIndex * 0.2 }}
+                className="group"
               >
-                <Card className="glass-effect border-white/10 h-full">
-                  <CardContent className="p-6">
-                    <h3 className="text-xl font-semibold mb-6 text-center">
-                      {category.title}
-                    </h3>
-                    <div className={`grid gap-3 ${
-                      category.title === 'Libraries' ? 'grid-cols-1' : 
-                      category.title === 'Frameworks' ? 'grid-cols-1' : 
-                      'grid-cols-2'
-                    }`}>
-                      {category.skills.map((skill, skillIndex) => (
-                        <motion.div
-                          key={skill.name}
-                          initial={{ opacity: 0, scale: 0.8 }}
-                          animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-                          whileHover={{ 
-                            scale: 1.05, 
-                            y: -2,
-                            transition: { duration: 0.2 }
-                          }}
-                          whileTap={{ scale: 0.95 }}
-                          transition={{ 
-                            duration: 0.6, 
-                            delay: categoryIndex * 0.1 + skillIndex * 0.05 
-                          }}
-                          className="group flex flex-col items-center p-4 glass-effect rounded-lg hover:bg-white/5 transition-all duration-300 cursor-pointer"
-                        >
+                <AnimatedBorderTrail>
+                  <Card className="glass-effect border-none h-full">
+                    <CardContent className="p-6">
+                      <h3 className="text-xl font-semibold mb-6 text-center">
+                        {category.title}
+                      </h3>
+                      <div className={`grid gap-3 ${
+                        category.title === 'Libraries' ? 'grid-cols-1' : 
+                        category.title === 'Frameworks' ? 'grid-cols-1' : 
+                        'grid-cols-2'
+                      }`}>
+                        {category.skills.map((skill, skillIndex) => (
                           <motion.div
-                            whileHover={{ rotate: [0, -10, 10, 0] }}
-                            transition={{ duration: 0.5 }}
-                            className="mb-3"
+                            key={skill.name}
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+                            whileHover={{ 
+                              scale: 1.05, 
+                              y: -2,
+                              transition: { duration: 0.2 }
+                            }}
+                            whileTap={{ scale: 0.95 }}
+                            transition={{ 
+                              duration: 0.6, 
+                              delay: categoryIndex * 0.1 + skillIndex * 0.05 
+                            }}
+                            className="flex flex-col items-center p-4 glass-effect rounded-lg hover:bg-white/5 transition-all duration-300 cursor-pointer"
                           >
-                            <span className="text-2xl group-hover:opacity-80 transition-opacity duration-300">
-                              {skill.icon}
+                            <motion.div
+                              whileHover={{ rotate: [0, -10, 10, 0] }}
+                              transition={{ duration: 0.5 }}
+                              className="mb-3"
+                            >
+                              <span className="text-2xl group-hover:opacity-80 transition-opacity duration-300">
+                                {skill.icon}
+                              </span>
+                            </motion.div>
+                            <span className="text-xs font-medium text-center leading-tight group-hover:text-white/90 transition-colors duration-300">
+                              {skill.name}
                             </span>
                           </motion.div>
-                          <span className="text-xs font-medium text-center leading-tight group-hover:text-white/90 transition-colors duration-300">
-                            {skill.name}
-                          </span>
-                        </motion.div>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
+                        ))}
+                      </div>
+                    </CardContent>
+                  </Card>
+                </AnimatedBorderTrail>
               </motion.div>
             ))}
           </div>

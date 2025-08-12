@@ -6,6 +6,7 @@ import { useRef } from 'react'
 import { ExternalLink, Github } from 'lucide-react'
 import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
+import AnimatedBorderTrail from '@/components/animata/container/animated-border-trail'
 
 const Projects = () => {
   const ref = useRef(null)
@@ -13,36 +14,40 @@ const Projects = () => {
 
   const projects = [
     {
-      title: 'E-Commerce Platform',
-      description: 'A full-stack e-commerce solution built with React, Node.js, and MongoDB. Features include user authentication, payment processing, and admin dashboard.',
+      title: 'VisionAssist Smart Glasses',
+      description: 'Wearable assistive device using Raspberry Pi and Python with ultrasonic sensors and haptic feedback. Achieved 95% obstacle detection accuracy with sub-200ms response time for real-time navigation assistance.',
       image: '/api/placeholder/600/400',
-      technologies: ['React', 'Node.js', 'MongoDB', 'Stripe', 'Tailwind CSS'],
-      github: 'https://github.com/yourusername/ecommerce',
-      live: 'https://your-ecommerce-demo.com',
+      technologies: ['Python', 'Raspberry Pi', 'Ultrasonic Sensors', 'Hardware'],
+      github: 'https://github.com/vikthevar/VisionAssist',
+      live: null,
+      period: 'Aug 2024 - Dec 2024'
     },
     {
-      title: 'Task Management App',
-      description: 'A collaborative task management application with real-time updates, drag-and-drop functionality, and team collaboration features.',
+      title: 'ReThread Chrome Extension',
+      description: '2nd place winner at DevLabs hackathon. Chrome extension using Google Gemini Vision for reverse image search, redirecting users from fast fashion to secondhand marketplaces with 85% matching accuracy.',
       image: '/api/placeholder/600/400',
-      technologies: ['Next.js', 'TypeScript', 'Prisma', 'PostgreSQL', 'Socket.io'],
-      github: 'https://github.com/yourusername/taskmanager',
-      live: 'https://your-taskmanager-demo.com',
+      technologies: ['JavaScript', 'Chrome APIs', 'Google Gemini Vision', 'Computer Vision'],
+      github: 'https://github.com/vikthevar/ReThread',
+      live: null,
+      period: 'Mar 2025'
     },
     {
-      title: 'Weather Dashboard',
-      description: 'A responsive weather dashboard with location-based forecasts, interactive maps, and detailed weather analytics.',
+      title: 'Heimdall AI Voice Assistant',
+      description: 'AI-powered voice assistant for visually impaired users to navigate computer screens using natural voice commands. Features OCR, computer vision, and secure AWS cloud integration.',
       image: '/api/placeholder/600/400',
-      technologies: ['React', 'Chart.js', 'OpenWeather API', 'Geolocation'],
-      github: 'https://github.com/yourusername/weather-dashboard',
-      live: 'https://your-weather-demo.com',
+      technologies: ['Python', 'Google Gemini', 'AWS', 'OCR', 'YOLOv8', 'Whisper'],
+      github: null,
+      live: null,
+      period: 'Jul 2025 - Aug 2025'
     },
     {
-      title: 'Social Media Analytics',
-      description: 'A comprehensive analytics platform for social media metrics with data visualization and automated reporting.',
+      title: 'Vintage Storefront Website',
+      description: 'Full-stack e-commerce platform with Stripe integration, admin dashboard, and inventory management. Generated $1,000+ in sales with 500+ monthly visitors and 25% mobile engagement increase.',
       image: '/api/placeholder/600/400',
-      technologies: ['Vue.js', 'D3.js', 'Express.js', 'Redis', 'Docker'],
-      github: 'https://github.com/yourusername/social-analytics',
-      live: 'https://your-analytics-demo.com',
+      technologies: ['React.js', 'Supabase', 'Stripe', 'Vercel'],
+      github: null,
+      live: 'Coming Soon',
+      period: 'Jun 2025 - Present'
     },
   ]
 
@@ -66,45 +71,68 @@ const Projects = () => {
                 initial={{ opacity: 0, y: 50 }}
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
                 transition={{ duration: 0.8, delay: index * 0.1 }}
+                className="group"
               >
-                <Card className="glass-effect border-white/10 overflow-hidden group hover:border-white/20 transition-all duration-300">
-                  <div className="relative overflow-hidden">
-                    <div className="w-full h-48 bg-gradient-to-br from-white/10 to-white/5 flex items-center justify-center">
-                      <span className="text-muted-foreground">Project Image</span>
+                <AnimatedBorderTrail>
+                  <Card className="glass-effect border-none overflow-hidden hover:bg-white/5 transition-all duration-300">
+                    <div className="relative overflow-hidden">
+                      <div className="w-full h-48 bg-gradient-to-br from-white/10 to-white/5 flex items-center justify-center">
+                        <span className="text-muted-foreground">Project Image</span>
+                      </div>
+                      <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
+                        {project.github ? (
+                          <Button size="sm" variant="outline" asChild>
+                            <a href={project.github} target="_blank" rel="noopener noreferrer">
+                              <Github className="mr-2 h-4 w-4" />
+                              Code
+                            </a>
+                          </Button>
+                        ) : (
+                          <Button size="sm" variant="outline" disabled>
+                            <Github className="mr-2 h-4 w-4" />
+                            Private Repo
+                          </Button>
+                        )}
+                        {project.live && project.live !== 'Coming Soon' && (
+                          <Button size="sm" asChild>
+                            <a href={project.live} target="_blank" rel="noopener noreferrer">
+                              <ExternalLink className="mr-2 h-4 w-4" />
+                              Live Demo
+                            </a>
+                          </Button>
+                        )}
+                        {project.live === 'Coming Soon' && (
+                          <Button size="sm" disabled>
+                            <ExternalLink className="mr-2 h-4 w-4" />
+                            Coming Soon
+                          </Button>
+                        )}
+                      </div>
                     </div>
-                    <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
-                      <Button size="sm" variant="outline" asChild>
-                        <a href={project.github} target="_blank" rel="noopener noreferrer">
-                          <Github className="mr-2 h-4 w-4" />
-                          Code
-                        </a>
-                      </Button>
-                      <Button size="sm" asChild>
-                        <a href={project.live} target="_blank" rel="noopener noreferrer">
-                          <ExternalLink className="mr-2 h-4 w-4" />
-                          Live Demo
-                        </a>
-                      </Button>
-                    </div>
-                  </div>
-                  
-                  <CardContent className="p-6">
-                    <h3 className="text-xl font-semibold mb-3">{project.title}</h3>
-                    <p className="text-muted-foreground mb-4 leading-relaxed">
-                      {project.description}
-                    </p>
-                    <div className="flex flex-wrap gap-2">
-                      {project.technologies.map((tech) => (
-                        <span
-                          key={tech}
-                          className="px-3 py-1 text-xs font-medium bg-white/10 rounded-full"
-                        >
-                          {tech}
+                    
+                    <CardContent className="p-6">
+                      <div className="flex justify-between items-start mb-3">
+                        <h3 className="text-xl font-semibold">{project.title}</h3>
+                        <span className="text-xs text-muted-foreground bg-white/5 px-2 py-1 rounded">
+                          {project.period}
                         </span>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
+                      </div>
+                      <p className="text-muted-foreground mb-4 leading-relaxed">
+                        {project.description}
+                      </p>
+                      <div className="flex flex-wrap gap-2">
+                        {project.technologies.map((tech) => (
+                          <span
+                            key={tech}
+                            className="px-3 py-1 text-xs font-medium bg-white/10 rounded-full"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                    </CardContent>
+                  </Card>
+                </AnimatedBorderTrail>
               </motion.div>
             ))}
           </div>

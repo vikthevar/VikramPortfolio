@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import AnimatedBorderTrail from "@/components/animata/container/animated-border-trail";
 
 const Contact = () => {
   const ref = useRef(null);
@@ -111,20 +112,23 @@ const Contact = () => {
 
               <div className="space-y-4 mb-8">
                 {contactInfo.map((info) => (
-                  <motion.a
-                    key={info.label}
-                    href={info.href}
-                    className="flex items-center p-4 glass-effect rounded-lg hover:bg-white/10 transition-colors group"
-                    whileHover={{ x: 5 }}
-                  >
-                    <info.icon className="h-5 w-5 mr-4 text-muted-foreground group-hover:text-white transition-colors" />
-                    <div>
-                      <p className="text-sm text-muted-foreground">
-                        {info.label}
-                      </p>
-                      <p className="font-medium">{info.value}</p>
-                    </div>
-                  </motion.a>
+                  <div key={info.label} className="group">
+                    <AnimatedBorderTrail>
+                      <motion.a
+                        href={info.href}
+                        className="flex items-center p-4 glass-effect rounded-lg hover:bg-white/10 transition-colors border-none"
+                        whileHover={{ x: 5 }}
+                      >
+                        <info.icon className="h-5 w-5 mr-4 text-muted-foreground group-hover:text-white transition-colors" />
+                        <div>
+                          <p className="text-sm text-muted-foreground">
+                            {info.label}
+                          </p>
+                          <p className="font-medium">{info.value}</p>
+                        </div>
+                      </motion.a>
+                    </AnimatedBorderTrail>
+                  </div>
                 ))}
               </div>
 
@@ -153,9 +157,11 @@ const Contact = () => {
               initial={{ opacity: 0, x: 50 }}
               animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
               transition={{ duration: 0.8, delay: 0.4 }}
+              className="group"
             >
-              <Card className="glass-effect border-white/10">
-                <CardContent className="p-6">
+              <AnimatedBorderTrail>
+                <Card className="glass-effect border-none">
+                  <CardContent className="p-6">
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div>
                       <label
@@ -221,7 +227,8 @@ const Contact = () => {
                   </form>
                 </CardContent>
               </Card>
-            </motion.div>
+            </AnimatedBorderTrail>
+          </motion.div>
           </div>
         </motion.div>
       </div>
