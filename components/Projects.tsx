@@ -119,11 +119,8 @@ const Projects = () => {
                     </div>
                     
                     <CardContent className="p-6">
-                      <div className="flex justify-between items-start mb-3">
+                      <div className="mb-3">
                         <h3 className="text-xl font-semibold">{project.title}</h3>
-                        <span className="text-xs text-muted-foreground bg-white/5 px-2 py-1 rounded">
-                          {project.period}
-                        </span>
                       </div>
                       <p className="text-muted-foreground mb-4 leading-relaxed">
                         {project.description}

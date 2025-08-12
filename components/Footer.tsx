@@ -19,8 +19,16 @@ const Footer = () => {
             <span>© {currentYear} Vikram Thevar</span>
           </div>
           
-          <div className="text-sm text-muted-foreground">
-            Built with Next.js, Tailwind CSS & Framer Motion
+          <div className="flex flex-col md:flex-row items-center gap-4 text-sm text-muted-foreground">
+            <span>Built with Next.js, Tailwind CSS & Framer Motion</span>
+            <a 
+              href="https://github.com/vikthevar/VikramPortfolio" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="hover:text-white transition-colors underline"
+            >
+              View Source Code
+            </a>
           </div>
         </motion.div>
       </div>
