@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { ArrowDown, Github, Linkedin, Mail } from 'lucide-react'
+import { ArrowDown, Github, Linkedin, Mail, FileText } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
 const Hero = () => {
@@ -38,8 +38,14 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12"
           >
-            <Button size="lg" onClick={scrollToProjects}>
+            <Button variant="outline" size="lg" onClick={scrollToProjects}>
               View My Work
+            </Button>
+            <Button variant="outline" size="lg" asChild>
+              <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">
+                <FileText className="mr-2 h-4 w-4" />
+                Resume
+              </a>
             </Button>
             <Button variant="outline" size="lg" asChild>
               <a href="mailto:vikthevar@gmail.com">
