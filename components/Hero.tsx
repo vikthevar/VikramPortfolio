@@ -9,6 +9,10 @@ const Hero = () => {
     document.querySelector('#projects')?.scrollIntoView({ behavior: 'smooth' })
   }
 
+  const scrollToContact = () => {
+    document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })
+  }
+
   return (
     <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
       {/* Background Animation */}
@@ -47,11 +51,9 @@ const Hero = () => {
                 Resume
               </a>
             </Button>
-            <Button variant="outline" size="lg" asChild>
-              <a href="mailto:vikthevar@gmail.com">
-                <Mail className="mr-2 h-4 w-4" />
-                Get In Touch
-              </a>
+            <Button variant="outline" size="lg" onClick={scrollToContact}>
+              <Mail className="mr-2 h-4 w-4" />
+              Get In Touch
             </Button>
           </motion.div>
 
