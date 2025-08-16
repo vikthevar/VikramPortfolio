@@ -59,10 +59,10 @@ const Projects = () => {
       title: "Vintage Clothing E-commerce Website",
       description:
         "Full-stack e-commerce platform with Stripe integration, admin dashboard, and inventory management. Generated $1,000+ in sales with 500+ monthly visitors and 25% mobile engagement increase.",
-      image: "/api/placeholder/600/400",
+      image: "/images/IMG_3321.jpeg",
       technologies: ["React.js", "Supabase", "Stripe", "Vercel"],
       github: null,
-      live: "Coming Soon",
+      live: "Site Undergoing Maintenance",
       period: "Jun 2025 - Present",
     },
   ];
@@ -125,7 +125,9 @@ const Projects = () => {
                             Private Repo
                           </Button>
                         )}
-                        {project.live && project.live !== "Coming Soon" && (
+                        {project.live && 
+                         project.live !== "Coming Soon" && 
+                         project.live !== "Site Undergoing Maintenance" && (
                           <Button size="sm" asChild>
                             <a
                               href={project.live}
@@ -137,10 +139,11 @@ const Projects = () => {
                             </a>
                           </Button>
                         )}
-                        {project.live === "Coming Soon" && (
+                        {(project.live === "Coming Soon" || 
+                          project.live === "Site Undergoing Maintenance") && (
                           <Button size="sm" disabled>
                             <ExternalLink className="mr-2 h-4 w-4" />
-                            Coming Soon
+                            {project.live}
                           </Button>
                         )}
                       </div>
