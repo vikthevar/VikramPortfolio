@@ -58,7 +58,7 @@ const Projects = () => {
     {
       title: "Vintage Clothing E-commerce Website",
       description:
-        "Full-stack e-commerce platform with Stripe integration, admin dashboard, and inventory management. Generated $1,000+ in sales with 500+ monthly visitors and 25% mobile engagement increase.",
+        "Full-stack e-commerce platform featuring secure payment processing, real-time inventory tracking, and responsive design. Implements RESTful APIs, database optimization, and automated email notifications for seamless user experience.",
       image: "/images/IMG_3321.jpeg",
       technologies: ["React.js", "Supabase", "Stripe", "Vercel"],
       github: null,
