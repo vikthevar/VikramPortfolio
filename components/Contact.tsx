@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef, useState } from "react";
+import emailjs from '@emailjs/browser';
 import {
   Mail,
   Phone,
@@ -24,13 +25,36 @@ const Contact = () => {
     email: "",
     message: "",
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log("Form submitted:", formData);
-    // Reset form
-    setFormData({ name: "", email: "", message: "" });
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+
+    try {
+      const result = await emailjs.send(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          message: formData.message,
+          to_name: 'Vikram Thevar',
+        },
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
+      );
+
+      console.log('Email sent successfully:', result);
+      setSubmitStatus('success');
+      setFormData({ name: "", email: "", message: "" });
+    } catch (error) {
+      console.error('Email send failed:', error);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (
@@ -220,10 +244,22 @@ const Contact = () => {
                       />
                     </div>
 
-                    <Button type="submit" size="lg" className="w-full">
+                    <Button type="submit" size="lg" className="w-full" disabled={isSubmitting}>
                       <Send className="mr-2 h-4 w-4" />
-                      Send Message
+                      {isSubmitting ? 'Sending...' : 'Send Message'}
                     </Button>
+
+                    {submitStatus === 'success' && (
+                      <div className="text-green-400 text-sm text-center mt-2">
+                        Message sent successfully! I'll get back to you soon.
+                      </div>
+                    )}
+                    
+                    {submitStatus === 'error' && (
+                      <div className="text-red-400 text-sm text-center mt-2">
+                        Failed to send message. Please try again or email me directly.
+                      </div>
+                    )}
                   </form>
                 </CardContent>
               </Card>
