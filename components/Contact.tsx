@@ -2,8 +2,8 @@
 
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
-import { useRef, useState } from "react";
-import emailjs from '@emailjs/browser';
+import { useRef, useState, useEffect } from "react";
+import emailjs from "@emailjs/browser";
 import {
   Mail,
   Phone,
@@ -26,32 +26,65 @@ const Contact = () => {
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [submitStatus, setSubmitStatus] = useState<
+    "idle" | "success" | "error"
+  >("idle");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Validate form data
+    if (
+      !formData.name.trim() ||
+      !formData.email.trim() ||
+      !formData.message.trim()
+    ) {
+      setSubmitStatus("error");
+      return;
+    }
+
     setIsSubmitting(true);
-    setSubmitStatus('idle');
+    setSubmitStatus("idle");
 
     try {
+      // Debug: Log environment variables (remove in production)
+      console.log("EmailJS Config:", {
+        serviceId: process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
+        templateId: process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
+        publicKey: process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
+          ? "Present"
+          : "Missing",
+      });
+
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        message: formData.message,
+        to_name: "Vikram Thevar",
+      };
+
+      console.log("Template params:", templateParams);
+
       const result = await emailjs.send(
-        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
-        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
-        {
-          from_name: formData.name,
-          from_email: formData.email,
-          message: formData.message,
-          to_name: 'Vikram Thevar',
-        },
-        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
+        "service_jl7ag1y",
+        "template_2pveju9",
+        templateParams,
+        "94r1oEQQcW-U6vf1Y"
       );
 
-      console.log('Email sent successfully:', result);
-      setSubmitStatus('success');
+      console.log("Email sent successfully:", result);
+      setSubmitStatus("success");
       setFormData({ name: "", email: "", message: "" });
+
+      // Clear success message after 5 seconds
+      setTimeout(() => setSubmitStatus("idle"), 5000);
     } catch (error) {
-      console.error('Email send failed:', error);
-      setSubmitStatus('error');
+      console.error("Email send failed:", error);
+      console.error("Error details:", error);
+      setSubmitStatus("error");
+
+      // Clear error message after 5 seconds
+      setTimeout(() => setSubmitStatus("idle"), 5000);
     } finally {
       setIsSubmitting(false);
     }
@@ -186,85 +219,91 @@ const Contact = () => {
               <AnimatedBorderTrail>
                 <Card className="glass-effect border-none">
                   <CardContent className="p-6">
-                  <form onSubmit={handleSubmit} className="space-y-6">
-                    <div>
-                      <label
-                        htmlFor="name"
-                        className="block text-sm font-medium mb-2"
-                      >
-                        Name
-                      </label>
-                      <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        required
-                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg focus:outline-none focus:border-white/30 transition-colors"
-                        placeholder="Your name"
-                      />
-                    </div>
-
-                    <div>
-                      <label
-                        htmlFor="email"
-                        className="block text-sm font-medium mb-2"
-                      >
-                        Email
-                      </label>
-                      <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        required
-                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg focus:outline-none focus:border-white/30 transition-colors"
-                        placeholder="Your email here"
-                      />
-                    </div>
-
-                    <div>
-                      <label
-                        htmlFor="message"
-                        className="block text-sm font-medium mb-2"
-                      >
-                        Message
-                      </label>
-                      <textarea
-                        id="message"
-                        name="message"
-                        value={formData.message}
-                        onChange={handleChange}
-                        required
-                        rows={5}
-                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg focus:outline-none focus:border-white/30 transition-colors resize-none"
-                        placeholder="Let's discuss opportunities, collaborations, or just say hello..."
-                      />
-                    </div>
-
-                    <Button type="submit" size="lg" className="w-full" disabled={isSubmitting}>
-                      <Send className="mr-2 h-4 w-4" />
-                      {isSubmitting ? 'Sending...' : 'Send Message'}
-                    </Button>
-
-                    {submitStatus === 'success' && (
-                      <div className="text-green-400 text-sm text-center mt-2">
-                        Message sent successfully! I'll get back to you soon.
+                    <form onSubmit={handleSubmit} className="space-y-6">
+                      <div>
+                        <label
+                          htmlFor="name"
+                          className="block text-sm font-medium mb-2"
+                        >
+                          Name
+                        </label>
+                        <input
+                          type="text"
+                          id="name"
+                          name="name"
+                          value={formData.name}
+                          onChange={handleChange}
+                          required
+                          className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg focus:outline-none focus:border-white/30 transition-colors"
+                          placeholder="Your name"
+                        />
                       </div>
-                    )}
-                    
-                    {submitStatus === 'error' && (
-                      <div className="text-red-400 text-sm text-center mt-2">
-                        Failed to send message. Please try again or email me directly.
+
+                      <div>
+                        <label
+                          htmlFor="email"
+                          className="block text-sm font-medium mb-2"
+                        >
+                          Email
+                        </label>
+                        <input
+                          type="email"
+                          id="email"
+                          name="email"
+                          value={formData.email}
+                          onChange={handleChange}
+                          required
+                          className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg focus:outline-none focus:border-white/30 transition-colors"
+                          placeholder="Your email here"
+                        />
                       </div>
-                    )}
-                  </form>
-                </CardContent>
-              </Card>
-            </AnimatedBorderTrail>
-          </motion.div>
+
+                      <div>
+                        <label
+                          htmlFor="message"
+                          className="block text-sm font-medium mb-2"
+                        >
+                          Message
+                        </label>
+                        <textarea
+                          id="message"
+                          name="message"
+                          value={formData.message}
+                          onChange={handleChange}
+                          required
+                          rows={5}
+                          className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg focus:outline-none focus:border-white/30 transition-colors resize-none"
+                          placeholder="Let's discuss opportunities, collaborations, or just say hello..."
+                        />
+                      </div>
+
+                      <Button
+                        type="submit"
+                        size="lg"
+                        className="w-full"
+                        disabled={isSubmitting}
+                      >
+                        <Send className="mr-2 h-4 w-4" />
+                        {isSubmitting ? "Sending..." : "Send Message"}
+                      </Button>
+
+                      {submitStatus === "success" && (
+                        <div className="text-green-400 text-sm text-center mt-2">
+                          Message sent successfully! I'll get back to you soon.
+                        </div>
+                      )}
+
+                      {submitStatus === "error" && (
+                        <div className="text-red-400 text-sm text-center mt-2">
+                          Failed to send message. Please try again or email me
+                          directly.
+                        </div>
+                      )}
+                    </form>
+                  </CardContent>
+                </Card>
+              </AnimatedBorderTrail>
+            </motion.div>
           </div>
         </motion.div>
       </div>
