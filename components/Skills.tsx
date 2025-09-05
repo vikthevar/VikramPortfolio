@@ -14,10 +14,8 @@ import {
   SiGit, 
   SiDocker, 
   SiVercel, 
-  SiAmazonaws, 
   SiMongodb, 
   SiSupabase, 
-  SiVisualstudiocode,
   SiPandas,
   SiNumpy,
   SiScikitlearn,
@@ -26,11 +24,9 @@ import {
   SiVite,
   SiHtml5,
   SiRust,
-  SiMysql,
-  SiC,
   SiCplusplus
 } from 'react-icons/si'
-import { FaJava, FaDatabase } from 'react-icons/fa'
+import { FaJava, FaDatabase, FaAws, FaCode } from 'react-icons/fa'
 
 const Skills = () => {
   const ref = useRef(null)
@@ -66,10 +62,10 @@ const Skills = () => {
         { name: 'Docker', icon: SiDocker, color: '#2496ed' },
         { name: 'Vite', icon: SiVite, color: '#646cff' },
         { name: 'Vercel', icon: SiVercel, color: '#ffffff' },
-        { name: 'AWS', icon: SiAmazonaws, color: '#ff9900' },
+        { name: 'AWS', icon: FaAws, color: '#ff9900' },
         { name: 'MongoDB', icon: SiMongodb, color: '#47a248' },
         { name: 'Supabase', icon: SiSupabase, color: '#3ecf8e' },
-        { name: 'VS Code', icon: SiVisualstudiocode, color: '#007acc' },
+        { name: 'VS Code', icon: FaCode, color: '#007acc' },
       ],
     },
     {
