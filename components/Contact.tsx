@@ -151,7 +151,7 @@ const Contact = () => {
             Get In Touch
           </h2>
 
-          <div className="grid lg:grid-cols-2 gap-12">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
             {/* Contact Information */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}

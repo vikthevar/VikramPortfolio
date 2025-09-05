@@ -28,10 +28,10 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-8 uppercase">
+            <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold mb-6 sm:mb-8 uppercase leading-tight">
               <span className="gradient-text">VIKRAM THEVAR</span>
             </h1>
-            <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-2xl mx-auto">
+            <p className="text-lg sm:text-xl md:text-2xl text-muted-foreground mb-6 sm:mb-8 max-w-2xl mx-auto px-4 sm:px-0">
               Computer Science Student & Full Stack Developer building impactful technology solutions
             </p>
           </motion.div>
@@ -40,18 +40,18 @@ const Hero = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12"
+            className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-8 sm:mb-12 px-4 sm:px-0"
           >
-            <Button variant="outline" size="lg" onClick={scrollToProjects}>
+            <Button variant="outline" size="lg" onClick={scrollToProjects} className="w-full sm:w-auto">
               View My Work
             </Button>
-            <Button variant="outline" size="lg" asChild>
-              <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">
+            <Button variant="outline" size="lg" asChild className="w-full sm:w-auto">
+              <a href="/Vikram_Thevar_Resume.pdf" target="_blank" rel="noopener noreferrer">
                 <FileText className="mr-2 h-4 w-4" />
                 Resume
               </a>
             </Button>
-            <Button variant="outline" size="lg" onClick={scrollToContact}>
+            <Button variant="outline" size="lg" onClick={scrollToContact} className="w-full sm:w-auto">
               <Mail className="mr-2 h-4 w-4" />
               Get In Touch
             </Button>

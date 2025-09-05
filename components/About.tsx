@@ -23,7 +23,7 @@ const About = () => {
             About Me
           </h2>
           
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
@@ -33,18 +33,18 @@ const About = () => {
               <AnimatedBorderTrail>
                 <Card className="glass-effect border-none">
                   <CardContent className="p-8">
-                    <p className="text-lg text-muted-foreground leading-relaxed mb-6">
+                    <p className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-4 sm:mb-6">
                       I'm Vikram Thevar, a Computer Science student at Arizona State University 
                       passionate about building impactful technology solutions. My work spans 
                       AI/ML, full stack development, and assistive technologies, from AI-powered 
                       voice assistants for accessibility to sustainable tech projects.
                     </p>
-                    <p className="text-lg text-muted-foreground leading-relaxed mb-6">
+                    <p className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-4 sm:mb-6">
                       I enjoy taking ideas from concept to production, focusing on clean design, 
                       user experience, and real-world impact. Always eager to learn, I'm committed 
                       to continuous growth and exploring how technology can solve meaningful problems.
                     </p>
-                    <p className="text-lg text-muted-foreground leading-relaxed">
+                    <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
                       When I'm not coding, you'll find me exploring music, staying up to date with fashion, 
                       playing basketball, or checking out the latest cars. I believe these interests fuel 
                       my creativity and bring fresh perspectives to my development work.

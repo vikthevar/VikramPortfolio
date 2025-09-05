@@ -69,7 +69,7 @@ const Skills = () => {
             Skills & Technologies
           </h2>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
             {skillCategories.map((category, categoryIndex) => (
               <motion.div
                 key={category.title}
@@ -84,7 +84,7 @@ const Skills = () => {
                       <h3 className="text-xl font-semibold mb-6 text-center">
                         {category.title}
                       </h3>
-                      <div className={`grid gap-3 ${
+                      <div className={`grid gap-2 sm:gap-3 ${
                         category.title === 'Libraries' ? 'grid-cols-1' : 
                         category.title === 'Frameworks' ? 'grid-cols-1' : 
                         'grid-cols-2'
@@ -104,14 +104,14 @@ const Skills = () => {
                               duration: 0.6, 
                               delay: categoryIndex * 0.1 + skillIndex * 0.05 
                             }}
-                            className="flex flex-col items-center p-4 glass-effect rounded-lg hover:bg-white/5 transition-all duration-300 cursor-pointer"
+                            className="flex flex-col items-center p-3 sm:p-4 glass-effect rounded-lg hover:bg-white/5 transition-all duration-300 cursor-pointer"
                           >
                             <motion.div
                               whileHover={{ rotate: [0, -10, 10, 0] }}
                               transition={{ duration: 0.5 }}
-                              className="mb-3"
+                              className="mb-2 sm:mb-3"
                             >
-                              <span className="text-2xl group-hover:opacity-80 transition-opacity duration-300">
+                              <span className="text-xl sm:text-2xl group-hover:opacity-80 transition-opacity duration-300">
                                 {skill.icon}
                               </span>
                             </motion.div>

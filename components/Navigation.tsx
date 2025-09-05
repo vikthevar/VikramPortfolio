@@ -22,7 +22,7 @@ const Navigation = () => {
     { href: '#about', label: 'About' },
     { href: '#projects', label: 'Projects' },
     { href: '#skills', label: 'Skills' },
-    { href: '#experience', label: 'Education' },
+
     { href: '#contact', label: 'Contact' },
   ]
 
@@ -43,11 +43,11 @@ const Navigation = () => {
       }`}
     >
       <div className="container">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-14 sm:h-16">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="text-xl font-bold"
+            className="text-lg sm:text-xl font-bold"
           >
             Vikram Thevar
           </motion.div>
@@ -82,7 +82,7 @@ const Navigation = () => {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="md:hidden glass-effect rounded-lg mt-2 p-4"
+            className="md:hidden glass-effect rounded-lg mt-2 p-4 mx-4"
           >
             {navItems.map((item) => (
               <button

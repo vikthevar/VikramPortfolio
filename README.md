@@ -18,7 +18,7 @@ A clean, professional, black-themed portfolio website built with Next.js, Tailwi
 - **About Me**: Concise bio with key statistics
 - **Projects**: Featured projects with hover effects and live demos
 - **Skills**: Interactive skill bars organized by category
-- **Experience & Education**: Professional timeline
+
 - **Contact**: Contact form and social links
 
 ## Tech Stack
@@ -52,7 +52,7 @@ Update the following files with your information:
 - `components/About.tsx` - Bio and statistics
 - `components/Projects.tsx` - Your projects
 - `components/Skills.tsx` - Your skills and proficiency levels
-- `components/Experience.tsx` - Work experience and education
+
 - `components/Contact.tsx` - Contact information and social links
 
 ### Styling

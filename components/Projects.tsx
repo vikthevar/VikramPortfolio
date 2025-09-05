@@ -80,7 +80,7 @@ const Projects = () => {
             Featured Projects
           </h2>
 
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid sm:grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
             {projects.map((project, index) => (
               <motion.div
                 key={project.title}
@@ -155,7 +155,7 @@ const Projects = () => {
                           {project.title}
                         </h3>
                       </div>
-                      <p className="text-muted-foreground mb-4 leading-relaxed">
+                      <p className="text-sm sm:text-base text-muted-foreground mb-4 leading-relaxed">
                         {project.description}
                       </p>
                       <div className="flex flex-wrap gap-2">
