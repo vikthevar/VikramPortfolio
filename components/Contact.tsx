@@ -169,23 +169,20 @@ const Contact = () => {
 
               <div className="space-y-4 mb-8">
                 {contactInfo.map((info) => (
-                  <div key={info.label} className="group">
-                    <AnimatedBorderTrail>
-                      <motion.a
-                        href={info.href}
-                        className="flex items-center p-4 glass-effect rounded-lg hover:bg-white/10 transition-colors border-none"
-                        whileHover={{ x: 5 }}
-                      >
-                        <info.icon className="h-5 w-5 mr-4 text-muted-foreground group-hover:text-white transition-colors" />
-                        <div>
-                          <p className="text-sm text-muted-foreground">
-                            {info.label}
-                          </p>
-                          <p className="font-medium">{info.value}</p>
-                        </div>
-                      </motion.a>
-                    </AnimatedBorderTrail>
-                  </div>
+                  <motion.a
+                    key={info.label}
+                    href={info.href}
+                    className="flex items-center p-4 glass-effect rounded-lg hover:bg-white/10 transition-colors border-none group"
+                    whileHover={{ x: 5 }}
+                  >
+                    <info.icon className="h-5 w-5 mr-4 text-muted-foreground group-hover:text-white transition-colors" />
+                    <div>
+                      <p className="text-sm text-muted-foreground">
+                        {info.label}
+                      </p>
+                      <p className="font-medium">{info.value}</p>
+                    </div>
+                  </motion.a>
                 ))}
               </div>
 

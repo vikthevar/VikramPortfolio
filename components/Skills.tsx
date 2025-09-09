@@ -98,19 +98,17 @@ const Skills = () => {
                 initial={{ opacity: 0, y: 50 }}
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
                 transition={{ duration: 0.8, delay: categoryIndex * 0.2 }}
-                className="group"
               >
-                <AnimatedBorderTrail>
-                  <Card className="glass-effect border-none h-full">
-                    <CardContent className="p-6">
-                      <h3 className="text-xl font-semibold mb-6 text-center">
-                        {category.title}
-                      </h3>
-                      <div className={`grid gap-2 sm:gap-3 ${
-                        category.title === 'Libraries' ? 'grid-cols-1' : 
-                        category.title === 'Frameworks' ? 'grid-cols-1' : 
-                        'grid-cols-2'
-                      }`}>
+                <Card className="glass-effect border-none h-full">
+                  <CardContent className="p-6">
+                    <h3 className="text-xl font-semibold mb-6 text-center">
+                      {category.title}
+                    </h3>
+                    <div className={`grid gap-2 sm:gap-3 ${
+                      category.title === 'Libraries' ? 'grid-cols-1' : 
+                      category.title === 'Frameworks' ? 'grid-cols-1' : 
+                      'grid-cols-2'
+                    }`}>
                         {category.skills.map((skill, skillIndex) => {
                           const IconComponent = skill.icon
                           return (
@@ -158,7 +156,6 @@ const Skills = () => {
                       </div>
                     </CardContent>
                   </Card>
-                </AnimatedBorderTrail>
               </motion.div>
             ))}
           </div>
