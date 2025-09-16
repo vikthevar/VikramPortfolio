@@ -42,7 +42,7 @@ const About = () => {
                   </p>
                   <p className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-4 sm:mb-6">
                     I enjoy taking ideas from concept to polished products,
-                    focusing on clean design, smooth UI/UX, and real world
+                    focusing on clean design, smooth UX, and real world
                     impact. I’m always learning, experimenting, and looking for
                     ways to grow as a developer while contributing to meaningful
                     projects.
