@@ -56,13 +56,23 @@ const Projects = () => {
       period: "Jul 2025 - Aug 2025",
     },
     {
+      title: "F1 Qualifying Lap Time Predictor",
+      description:
+        "Built machine learning model using Random Forest Regressor to predict Formula 1 qualifying lap times based on team, driver, and telemetry variables. Engineered interaction features and tuned hyperparameters with GridSearchCV, achieving R² = 0.94 and low MSE on test data.",
+      image: "/images/f1-predictor.png",
+      technologies: ["Python", "scikit-learn", "Pandas", "Matplotlib"],
+      github: "https://github.com/vikthevar/F1QualifyingPredictor",
+      live: null,
+      period: "2024",
+    },
+    {
       title: "Vintage Clothing E-commerce Website",
       description:
         "Full-stack e-commerce platform featuring secure payment processing, real-time inventory tracking, and responsive design. Implements RESTful APIs, database optimization, and automated email notifications for seamless user experience.",
       image: "/images/IMG_3321.jpeg",
       technologies: ["React.js", "Supabase", "Stripe", "Vercel"],
       github: null,
-      live: "Site Undergoing Maintenance",
+      live: null,
       period: "Jun 2025 - Present",
     },
   ];

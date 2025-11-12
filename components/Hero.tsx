@@ -46,7 +46,7 @@ const Hero = () => {
               View My Work
             </Button>
             <Button variant="outline" size="lg" asChild className="w-full sm:w-auto">
-              <a href="/Vikram_Thevar_Resume.pdf" target="_blank" rel="noopener noreferrer">
+              <a href="/VikramThevarResume.pdf" target="_blank" rel="noopener noreferrer">
                 <FileText className="mr-2 h-4 w-4" />
                 Resume
               </a>
